@@ -1,9 +1,13 @@
-i3lock with audio - improved screen locker with audio
-===============================
+# i3lock with audio
+
+Demo video [here](https://www.jrodal.dev/assets/video/etc/i3lockaudio.mp3)!
 
 My fork of i3lock replaces the `-b` beep flag with the `-a` audio file flag, which allows you to specify an audio file that plays whenever an incorrect password is entered.
+sample usage: `i3lock -a my_audio.mp3`
 
 My fork requires `mpg321` to work. It is almost certainly in your distro's repositories.
+
+## Original i3lock README
 
 [i3lock](https://i3wm.org/i3lock/)> is a simple screen locker like slock.
 After starting it, you will see a white screen (you can configure the
