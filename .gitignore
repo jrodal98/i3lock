@@ -29,3 +29,8 @@ Makefile.in
 /install-sh
 /missing
 /stamp-h1
+
+.ccls-cache
+compile_commands.json
+
+aminclude_static.am
