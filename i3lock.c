@@ -59,6 +59,7 @@ typedef void (*ev_callback_t)(EV_P_ ev_timer *w, int revents);
 static void input_done(void);
 
 char color[7] = "ffffff";
+char *audio_cmd = NULL;
 uint32_t last_resolution[2];
 xcb_window_t win;
 static xcb_cursor_t cursor;
@@ -361,8 +362,7 @@ static void input_done(void) {
 
     /* beep on authentication failure, if enabled */
     if (beep) {
-        xcb_bell(conn, 100);
-        xcb_flush(conn);
+        system(audio_cmd);
     }
 }
 
@@ -1020,7 +1020,7 @@ int main(int argc, char *argv[]) {
     struct option longopts[] = {
         {"version", no_argument, NULL, 'v'},
         {"nofork", no_argument, NULL, 'n'},
-        {"beep", no_argument, NULL, 'b'},
+        {"audio", no_argument, NULL, 'a'},
         {"dpms", no_argument, NULL, 'd'},
         {"color", required_argument, NULL, 'c'},
         {"pointer", required_argument, NULL, 'p'},
@@ -1040,7 +1040,7 @@ int main(int argc, char *argv[]) {
     if ((username = pw->pw_name) == NULL)
         errx(EXIT_FAILURE, "pw->pw_name is NULL.");
 
-    char *optstring = "hvnbdc:p:ui:teI:f";
+    char *optstring = "hvndc:p:a:ui:teI:f";
     while ((o = getopt_long(argc, argv, optstring, longopts, &longoptind)) != -1) {
         switch (o) {
             case 'v':
@@ -1048,8 +1048,9 @@ int main(int argc, char *argv[]) {
             case 'n':
                 dont_fork = true;
                 break;
-            case 'b':
+            case 'a':
                 beep = true;
+                asprintf(&audio_cmd, "%s %s >/dev/null 2>&1", "mpg123",strdup(optarg));
                 break;
             case 'd':
                 fprintf(stderr, "DPMS support has been removed from i3lock. Please see the manpage i3lock(1).\n");
@@ -1101,7 +1102,7 @@ int main(int argc, char *argv[]) {
                 show_failed_attempts = true;
                 break;
             default:
-                errx(EXIT_FAILURE, "Syntax: i3lock [-v] [-n] [-b] [-d] [-c color] [-u] [-p win|default]"
+                errx(EXIT_FAILURE, "Syntax: i3lock [-v] [-n] [-a] [-d] [-c color] [-u] [-p win|default]"
                                    " [-i image.png] [-t] [-e] [-I timeout] [-f]");
         }
     }

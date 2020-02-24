@@ -1,5 +1,10 @@
-i3lock - improved screen locker
+i3lock with audio - improved screen locker with audio
 ===============================
+
+My fork of i3lock replaces the `-b` beep flag with the `-a` audio file flag, which allows you to specify an audio file that plays whenever an incorrect password is entered.
+
+My fork requires `mpg321` to work. It is almost certainly in your distro's repositories.
+
 [i3lock](https://i3wm.org/i3lock/)> is a simple screen locker like slock.
 After starting it, you will see a white screen (you can configure the
 color/an image). You can return to your screen by entering your password.
@@ -22,6 +27,8 @@ or similar, use existing tooling to do this before passing it to i3lock.
 
 Install
 -------
+
+install `mpg321`.
 
 See [the i3lock home page](https://i3wm.org/i3lock/).
 
