@@ -5,7 +5,7 @@ Demo video [here](https://www.jrodal.dev/assets/video/etc/i3lockaudio.mp3)!
 My fork of i3lock replaces the `-b` beep flag with the `-a` audio file flag, which allows you to specify an audio file that plays whenever an incorrect password is entered.
 sample usage: `i3lock -a my_audio.mp3`
 
-My fork requires `mpg321` to work. It is almost certainly in your distro's repositories.
+My fork requires `mpg123` to work. It is almost certainly in your distro's repositories.
 
 ## Original i3lock README
 
@@ -32,7 +32,7 @@ or similar, use existing tooling to do this before passing it to i3lock.
 Install
 -------
 
-install `mpg321`.
+install `mpg123`.
 
 See [the i3lock home page](https://i3wm.org/i3lock/).
 
